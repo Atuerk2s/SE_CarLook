@@ -37,4 +37,6 @@ public class User {
     public String getRole(){
         return role.getBezeichnung();
     }
+
+    public void setRole(String role) { this.role.setBezeichnung(role); }
 }

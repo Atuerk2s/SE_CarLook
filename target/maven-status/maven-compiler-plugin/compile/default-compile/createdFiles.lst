@@ -21,6 +21,7 @@ org\example\gui\windows\ConfirmationWindow.class
 org\example\gui\windows\ListBookingWindow.class
 org\example\services\db\JDBCConnection.class
 org\example\process\control\HotelSearch.class
+org\example\process\control\exceptions\EmailException.class
 org\example\services\util\Views.class
 org\example\model\objects\entities\Registrierung.class
 org\example\gui\components\TopPanel.class

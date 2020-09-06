@@ -10,6 +10,7 @@ import org.example.model.objects.dto.User;
 import org.example.process.control.LoginControl;
 import org.example.process.control.RegistrationControl;
 import org.example.process.control.exceptions.DatabaseException;
+import org.example.process.control.exceptions.EmailException;
 import org.example.process.control.exceptions.NoSuchUserOrPassword;
 import org.example.services.util.Views;
 
@@ -75,11 +76,14 @@ public class RegistrationView extends VerticalLayout implements View {
             try {
                 RegistrationControl.registerUser (email, password, name, rolle);
 
-            } catch (DatabaseException ex) {
-                Notification.show("DB-Fehler", ex.getReason(), Notification.Type.ERROR_MESSAGE);
+            } catch (DatabaseException ex ) {
+                Notification.show("DB-Fehler:", ex.getReason(), Notification.Type.ERROR_MESSAGE);
                 emailField.setValue("");
                 passwordField.setValue("");
                 nameField.setValue("");
+            } catch (EmailException ex) {
+                Notification.show("Eingabe-Fehler:", ex.getReason(), Notification.Type.ERROR_MESSAGE);
+                emailField.setValue("");
             }
 
         });
