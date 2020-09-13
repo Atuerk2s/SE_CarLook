@@ -9,6 +9,7 @@ import com.vaadin.ui.*;
 import org.example.gui.components.TopPanel;
 import org.example.gui.ui.MyUI;
 import org.example.gui.windows.BookingWindow;
+import org.example.model.objects.dto.Auto;
 import org.example.model.objects.dto.Hotel;
 import org.example.model.objects.dto.User;
 import org.example.process.control.HotelSearch;
@@ -32,7 +33,7 @@ public class MainView extends VerticalLayout implements View {
     }
 
     private int anzahl = 0;
-    private Hotel selected = null;
+    private Auto selected = null;
 
     public void setUp(){
 
@@ -57,9 +58,10 @@ public class MainView extends VerticalLayout implements View {
         }
 
         //Mit Personalisierung
-        final Label label = new Label(vorname + ", gib einen Ort ein:");
+        //final Label label = new Label(vorname + ", gib einen Ort ein:");
+        final Label label = new Label("Suchbegriff eingeben:");
         Button suchenButton = new Button("Suchen", VaadinIcons.SEARCH);
-        Button buchenButton = new Button("Buchen", VaadinIcons.BOOK);
+        Button reservierenButton = new Button("Reservieren", VaadinIcons.BOOK);
         final TextField textinput = new TextField();
 
 
@@ -70,12 +72,12 @@ public class MainView extends VerticalLayout implements View {
         setComponentAlignment(horizon, Alignment.MIDDLE_CENTER);
         horizon.setComponentAlignment(label, Alignment.MIDDLE_CENTER);
 
-        Grid<Hotel> grid = new Grid<>();
+        Grid<Auto> grid = new Grid<>();
         grid.setSizeFull();
         grid.setHeightMode(HeightMode.UNDEFINED);
 
         // Die aktuell angewählte Zeile in der Tabelle (aka dem Grid)
-        SingleSelect<Hotel> selection = grid.asSingleSelect();
+        SingleSelect<Auto> selection = grid.asSingleSelect();
 
         // Der Event Listener für den Grid
         grid.addSelectionListener(event -> {
@@ -89,45 +91,49 @@ public class MainView extends VerticalLayout implements View {
         suchenButton.addClickListener(e -> {
 
             //Fange Eingabe ab
-            String ort = textinput.getValue();
-            List<Hotel> liste = HotelSearch.getInstance().getHotelByOrt(ort);
+            String suchbegriff = textinput.getValue();
+            List<Hotel> liste = HotelSearch.getInstance().getHotelByOrt(suchbegriff);
+            //!! List<Auto> liste = HotelSearch.getInstance().getHotelByOrt(suchbegriff);
+
 
             //Falls nichts eingegeben wurde
-            if (ort.equals("")) {
-                Notification.show(null, "Bitte Ort eingeben!", Notification.Type.WARNING_MESSAGE);
+            if (suchbegriff.equals("")) {
+                Notification.show(null, "Bitte Suchbegriff eingeben!", Notification.Type.WARNING_MESSAGE);
             }
             anzahl += 1; //Wie oft wurde gesucht
 
             //erstmal alles löschen
             grid.removeAllColumns();
 
-            grid.setCaption("Treffer für " + ort + " (Anzahl der Suchen: " + MainView.this.anzahl + ")" +
+            grid.setCaption("Treffer für " + suchbegriff + " (Anzahl der Suchen: " + MainView.this.anzahl + ")" +
                     ((MyUI) UI.getCurrent()).getUser().getName());
 
-            //Liste mit passenden Hotels einfügen
+            /*Liste mit passenden Hotels einfügen
             grid.setItems(liste);
 
             // Columns definieren
-            grid.addColumn(Hotel::getName).setCaption("Name");
-            grid.addColumn(Hotel::getId).setCaption("ID");
-            grid.addColumn(Hotel::getOrt).setCaption("Ort");
-            grid.addColumn(Hotel::getDescription).setCaption("Beschreibung");
+            grid.addColumn(Auto::getMarke).setCaption("Marke");
+            grid.addColumn(Auto::getId).setCaption("ID");
+            grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
+            grid.addColumn(Auto::getDescription).setCaption("Beschreibung");
+            */
+
         });
 
 
-        buchenButton.addClickListener(e -> {
+        reservierenButton.addClickListener(e -> {
             if (MainView.this.selected == null){
             } else {
-                BookingWindow window = new BookingWindow(MainView.this.selected);
-                UI.getCurrent().addWindow(window);
+                //BookingWindow window = new BookingWindow(MainView.this.selected);
+                //UI.getCurrent().addWindow(window);
             }
         });
 
 
         // Grid und Buchen Button richtig anordnen
         addComponent(grid);
-        addComponent(buchenButton);
-        setComponentAlignment(buchenButton, Alignment.MIDDLE_CENTER);
+        addComponent(reservierenButton);
+        setComponentAlignment(reservierenButton, Alignment.MIDDLE_CENTER);
 
     }
 
