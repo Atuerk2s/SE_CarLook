@@ -2,21 +2,21 @@ package org.example.gui.windows;
 
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
+import org.example.model.objects.dto.Auto;
 import org.example.model.objects.dto.BookingRequest;
-import org.example.model.objects.dto.Hotel;
 import org.example.process.control.BookingProcess;
 
 import java.time.LocalDate;
 
 public class BookingWindow extends Window {
 
-    public BookingWindow(final Hotel hotel){
+    public BookingWindow(final Auto auto){
         super("Buchung"); //Set Window Caption
         center();
 
         //Some basic content for window
         VerticalLayout content = new VerticalLayout();
-        content.addComponent(new Label("Buchung für Hotel: " + hotel.getName()));
+        content.addComponent(new Label("Buchung für Hotel: " + auto.getMarke()));
         content.setMargin(true);
         setContent(content);
 
@@ -57,7 +57,7 @@ public class BookingWindow extends Window {
             request.setAnreise(dateAnreise.getValue());
             request.setNumber((Integer) personNumber.getValue());
             request.setIban(ibanFeld.getValue());
-            request.setHotel(hotel);
+            request.setHotel(auto);
 
             BookingProcess.getInstance().createBooking(request, BookingWindow.this);
         });

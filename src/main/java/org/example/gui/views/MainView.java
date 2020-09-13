@@ -8,9 +8,7 @@ import com.vaadin.shared.ui.grid.HeightMode;
 import com.vaadin.ui.*;
 import org.example.gui.components.TopPanel;
 import org.example.gui.ui.MyUI;
-import org.example.gui.windows.BookingWindow;
 import org.example.model.objects.dto.Auto;
-import org.example.model.objects.dto.Hotel;
 import org.example.model.objects.dto.User;
 import org.example.process.control.HotelSearch;
 import org.example.services.util.Views;
@@ -92,7 +90,7 @@ public class MainView extends VerticalLayout implements View {
 
             //Fange Eingabe ab
             String suchbegriff = textinput.getValue();
-            List<Hotel> liste = HotelSearch.getInstance().getHotelByOrt(suchbegriff);
+            List<Auto> liste = HotelSearch.getInstance().getAutoByMarke(suchbegriff);
             //!! List<Auto> liste = HotelSearch.getInstance().getHotelByOrt(suchbegriff);
 
 
@@ -108,15 +106,15 @@ public class MainView extends VerticalLayout implements View {
             grid.setCaption("Treffer für " + suchbegriff + " (Anzahl der Suchen: " + MainView.this.anzahl + ")" +
                     ((MyUI) UI.getCurrent()).getUser().getName());
 
-            /*Liste mit passenden Hotels einfügen
+            //Liste mit passenden Hotels einfügen
             grid.setItems(liste);
 
-            // Columns definieren
-            grid.addColumn(Auto::getMarke).setCaption("Marke");
+           //Columns definieren
             grid.addColumn(Auto::getId).setCaption("ID");
+            grid.addColumn(Auto::getMarke).setCaption("Marke");
             grid.addColumn(Auto::getBaujahr).setCaption("Baujahr");
-            grid.addColumn(Auto::getDescription).setCaption("Beschreibung");
-            */
+            grid.addColumn(Auto::getBeschreibung).setCaption("Beschreibung");
+
 
         });
 

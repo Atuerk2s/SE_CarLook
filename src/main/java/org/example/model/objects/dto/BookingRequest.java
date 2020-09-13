@@ -8,7 +8,7 @@ public class BookingRequest {
     private LocalDate abreise = null;
     private String iban = null;
     private int number;
-    private Hotel hotel;
+    private Auto auto;
 
 
     public LocalDate getAnreise() {
@@ -35,12 +35,12 @@ public class BookingRequest {
         this.iban = iban;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public Auto getHotel() {
+        return auto;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotel(Auto auto) {
+        this.auto = auto;
     }
 
     public int getNumber() {

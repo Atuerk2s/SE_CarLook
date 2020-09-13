@@ -1,15 +1,15 @@
 package org.example.process.control;
 
-import org.example.model.dao.HotelDAO;
-import org.example.model.objects.dto.Hotel;
+import org.example.model.dao.AutoDAO;
+import org.example.model.objects.dto.Auto;
 
 import java.util.List;
 
 public class HotelSearch {
 
-    Hotel hotel1 = new Hotel("Hotel Maier", 1, "Köln", "Ein schönes Hotel");
-    Hotel hotel2 = new Hotel("Hotel Maritim", 2, "Bonn", "Ein wunderschönes Hotel");
-    Hotel hotel3 = new Hotel("Hotel Königshof", 3, "Bonn", "Zentrales Hotel");
+    Auto Auto1 = new Auto("BMW", 1, 1992, "4-Türer");
+    Auto Auto2 = new Auto("AUDI", 2, 1993, "Schiebedach");
+    Auto Auto3 = new Auto("Mercedes", 3, 1994, "Mattschwarz");
 
     private HotelSearch(){
 
@@ -24,7 +24,7 @@ public class HotelSearch {
         return search;
     }
 
-    public List<Hotel> getHotelByOrt(String ort){
-        return HotelDAO.getInstance().getHotelByLocation(ort);
+    public List<Auto> getAutoByMarke(String marke){
+        return AutoDAO.getInstance().getHotelByMarke(marke);
     }
 }

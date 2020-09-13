@@ -5,7 +5,7 @@ public class Auto implements java.io.Serializable{
     private String marke;
     private Integer id;
     private Integer baujahr;
-    private String description;
+    private String beschreibung;
 
     //Zugeordneter Vertriebler, der das Auto eingestellt hat
     private User vertriebler;
@@ -14,11 +14,11 @@ public class Auto implements java.io.Serializable{
 
     }
 
-    public Auto(String name, Integer id, Integer ort, String description){
+    public Auto(String name, Integer id, Integer ort, String beschreibung){
         this.marke = name;
         this.id = id;
         this.baujahr = ort;
-        this.description = description;
+        this.beschreibung = beschreibung;
     }
 
     public Integer getId(){
@@ -39,11 +39,11 @@ public class Auto implements java.io.Serializable{
     public void setBaujahr(Integer baujahr){
         this.baujahr = baujahr;
     }
-    public String getDescription(){
-        return description;
+    public String getBeschreibung(){
+        return beschreibung;
     }
-    public void setDescription(String description){
-        this.description = description;
+    public void setBeschreibung(String beschreibung){
+        this.beschreibung = beschreibung;
     }
 
     public String toString(){

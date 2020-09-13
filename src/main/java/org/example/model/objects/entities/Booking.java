@@ -1,6 +1,6 @@
 package org.example.model.objects.entities;
 
-import org.example.model.objects.dto.Hotel;
+import org.example.model.objects.dto.Auto;
 import org.example.model.objects.dto.User;
 
 import java.time.LocalDate;
@@ -13,7 +13,7 @@ public class Booking {
     private LocalDate datumBuchung = null;
     private String iban = null;
     private int number;
-    private Hotel hotel;
+    private Auto auto;
     private User user;
 
     public int getId() {
@@ -64,12 +64,12 @@ public class Booking {
         this.number = number;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public Auto getHotel() {
+        return auto;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotel(Auto auto) {
+        this.auto = auto;
     }
 
     public User getUser() {

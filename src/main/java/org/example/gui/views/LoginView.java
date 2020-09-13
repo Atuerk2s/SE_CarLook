@@ -2,7 +2,6 @@ package org.example.gui.views;
 
 import com.vaadin.navigator.View;
 import com.vaadin.navigator.ViewChangeListener;
-import com.vaadin.server.FontAwesome;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.*;
 import org.example.gui.ui.MyUI;
@@ -10,10 +9,26 @@ import org.example.model.objects.dto.User;
 import org.example.process.control.LoginControl;
 import org.example.process.control.exceptions.DatabaseException;
 import org.example.process.control.exceptions.NoSuchUserOrPassword;
+import org.example.services.util.Roles;
 import org.example.services.util.Views;
+import java.util.logging.*;
+import java.sql.*;
+import com.vaadin.server.*;
 
 public class LoginView extends VerticalLayout implements View {
 
+    @Override
+    public void enter(ViewChangeListener.ViewChangeEvent event){
+        User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
+
+
+        //Wenn user schon eingeloggt, kommt er direkt auf Main statt auf Login
+        if(user != null){
+            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
+        }else {
+            this.setUp();
+        }
+    }
 
     public void setUp(){
 
@@ -78,20 +93,5 @@ public class LoginView extends VerticalLayout implements View {
                 emailField.setValue("");
                 passwordField.setValue("");
             }
-
         });
-    }
-
-    public void enter(ViewChangeListener.ViewChangeEvent event){
-        //User user = (User) VaadinSession.getCurrent().getAttribute(Roles.CURRENT_USER);
-
-        User user =  ((MyUI) UI.getCurrent()).getUser();
-
-        //Wenn user schon eingeloggt, kommt er direkt auf Main statt auf Login
-        if(user != null){
-            UI.getCurrent().getNavigator().navigateTo(Views.MAIN);
-        }else {
-            this.setUp();
-        }
-    }
-}
+}}

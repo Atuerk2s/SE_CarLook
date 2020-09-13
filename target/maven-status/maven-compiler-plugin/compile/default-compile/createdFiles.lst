@@ -1,4 +1,3 @@
-org\example\model\objects\dto\Hotel.class
 org\example\model\factories\BookingFactory.class
 org\example\gui\components\TopPanel$1.class
 org\example\process\control\exceptions\NoSuchUserOrPassword.class
@@ -8,7 +7,6 @@ org\example\services\util\Roles.class
 org\example\gui\views\LoginView.class
 org\example\gui\views\RegistrationView.class
 org\example\model\dao\AbstractDAO.class
-org\example\model\dao\HotelDAO.class
 org\example\model\objects\dto\User.class
 org\example\process\control\RegistrationControl.class
 org\example\model\objects\dto\BookingRequest.class
@@ -20,6 +18,7 @@ org\example\gui\windows\BookingWindow.class
 org\example\gui\windows\ConfirmationWindow.class
 org\example\gui\windows\ListBookingWindow.class
 org\example\services\db\JDBCConnection.class
+org\example\model\dao\AutoDAO.class
 org\example\process\control\HotelSearch.class
 org\example\process\control\exceptions\EmailException.class
 org\example\services\util\Views.class
@@ -27,6 +26,7 @@ org\example\model\objects\entities\Registrierung.class
 org\example\gui\components\TopPanel.class
 org\example\model\dao\RoleDAO.class
 org\example\gui\ui\MyUI$MyUIServlet.class
+org\example\model\objects\dto\Auto.class
 org\example\process\control\LoginControl.class
 org\example\model\dao\BuchungDAO.class
 org\example\process\control\BookingProcess.class
